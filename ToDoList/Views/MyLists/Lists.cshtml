@@ -1,0 +1,60 @@
+﻿@model List<ToDoCollection>
+
+@{
+    ViewData["Title"] = "Lists";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Here are all of your saved Lists.</p>
+
+
+@foreach (var toDoCollection in Model)
+{
+    <div>
+        <h2>@toDoCollection.Name </h2>
+
+
+    </div>
+
+
+
+    <table class="table table-bordered table-striped" style=width 100%>
+
+        <thead>
+
+            <tr>
+                <th class="text-center">To Do</th>
+                <th class="text-center">Completed?</th>
+                <th></th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var toDo in toDoCollection.ToDoList)
+            {
+                <tr>
+                    <td width=60%>@toDo.Description</td>
+                    <td width=15% class="text-center">@toDo.IsDone</td>
+                    <td width=12%>
+                        <div id="button" class="w-70 btn-group text-end mx-2" role="group">
+                            <a asp-controller="Home" asp-action="Edit" asp-route-id="@toDo.Id" class="btn btn-primary"> Edit</a>
+
+                            <a asp-controller="Home" asp-action="Delete" asp-route-id="@toDo.Id" class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
+
+
+
+                </tr>
+            }
+
+
+        </tbody>
+  </table>
+   
+
+
+
+}

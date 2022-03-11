@@ -1,0 +1,63 @@
+﻿@model ToDoCollection
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<h1 class="display-4 text-center">To Do List</h1>
+ <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6 text-beginning">
+
+                <h2 class="text-primary"> @Model?.Name</h2>
+
+
+            </div>
+
+            <div class="col-6 text-end">   
+                <a asp-controller="Home" asp-action="ChangeName" asp-route-id="@Model.Id" class="btn btn-primary"> Change List Name</a>
+                <a asp-controller="Home" asp-action="CreateTask" class="btn btn-primary"> Add Task</a>
+
+            </div>
+
+
+        </div>
+
+        <table class="table table-bordered table-striped" style=width 100%>
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        To Do
+                    </th>
+                    <th class="text-center">
+                        Completed?
+                    </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.ToDoList)
+                {
+
+                    <tr>
+                        <td width=60%>@obj.Description</td>
+                        <td width=20% class="text-center">@obj.IsDone</td>
+                        <td width=12%>
+                            <div id="button" class="w-70 btn-group text-end mx-2" role="group">
+                                <a asp-controller="Home" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary"> Edit</a>
+
+                                <a asp-controller="Home" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+
+
+        </table>
+
+ </div>
+
+
+
